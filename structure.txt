@@ -1,0 +1,14 @@
+--
+-- Database: `utd_test`
+--
+-- --------------------------------------------------------
+-- --------------------------------------------------------
+--
+-- Table structure for table `gallery`
+--
+
+CREATE TABLE `utd_test`.`gallery` ( `id` INT NOT NULL AUTO_INCREMENT ,  `author` VARCHAR(200) NOT NULL ,  `image_path` VARCHAR(500) NOT NULL ,    PRIMARY KEY  (`id`)) ENGINE = InnoDB;
+--
+-- --------------------------------------------------------
+-- --------------------------------------------------------
+--
