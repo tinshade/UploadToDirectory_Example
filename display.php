@@ -11,6 +11,9 @@
               <img class="img-fluid" src="'.$row['image_path'].'"/>
               <figcaption>'.$row['author'].'</figcaption>
             </figure>
+            <div class="container mt-2 text-center">
+                <button class="btn btn-warning" id="'.$row['id'].'" onclick="EditImage(this.id)">EDIT</button> 
+            </div>
         </div>
         ';
     }

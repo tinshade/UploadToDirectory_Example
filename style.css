@@ -1,0 +1,18 @@
+*{
+    margin:0;
+    padding: 0;
+}
+.grad{
+    background: rgb(93,84,164);
+    background: linear-gradient(0deg, rgba(93,84,164,1) 0%, rgba(157,101,201,1) 35%, rgba(215,137,215,1) 100%);
+    border-radius: 17px;
+}
+label{
+    color: #3b0045;
+    float: left !important;
+    margin-top: 3.4%;
+}
+
+.hvr-edit:hover{
+    color: rgba(0,0,0,0.6);
+}

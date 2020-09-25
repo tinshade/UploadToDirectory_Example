@@ -7,22 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <style type="text/css">
-        *{
-            margin:0;
-            padding: 0;
-        }
-        .grad{
-            background: rgb(93,84,164);
-            background: linear-gradient(0deg, rgba(93,84,164,1) 0%, rgba(157,101,201,1) 35%, rgba(215,137,215,1) 100%);
-            border-radius: 17px;
-        }
-        label{
-            color: #3b0045;
-            float: left !important;
-            margin-top: 3.4%;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css"/>
     <title>Upload to directory with PHP!</title>
   </head>
   <body>
@@ -45,31 +30,57 @@
                     <br />  
                 <br />
                 </div>
-                <br />  
-                <br />
-                <hr style="background-color: #3b0045; width: 80%; margin: 0 auto;">
-                <br />
-                <br />
-                <div class="container mt-2">
-                    <div>
-                        <div class="row" id="gallery">
-                            
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <br>
+                
                 
             </form>
-            
+            <br />  
+            <br />
+            <hr style="background-color: #3b0045; width: 80%; margin: 0 auto;">
+            <br />
+            <br />
+            <div class="container mt-2">
+                <div>
+                    <div class="row" id="gallery">
+                        
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
             <div class="container text-center text-white mt-5 pt-5" id="credits">
                 <small style="color:white">Made with <span style="color: red;">&#x2764;</span> by <a href="https://github.com/tinshade" title="My GitHub" style="color:white">Abhishek Iyengar</a></small>
             </div>
         </div>
     </section>
-    <?php
-    
-    ?>
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Update Image</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <form id="updateform">
+	        	<div class="container p-2">
+	        		<div class="container" id="current">
+	        		</div>
+		        	<input type="file" class="form-control" name="singleimage[]" id="singleimage" title="Updated image">
+		        	<br>
+		        	<button class="btn btn-primary" type="submit" id="update_btn">UPDATE</button>
+		        	<br>
+	        	</div>
+	        </form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary">Save changes</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -104,6 +115,7 @@
                         url:"upload.php",
                         method:"POST",
                         data: new FormData(this),
+                        async:true,
                         contentType:false,
                         cache:false,
                         processData:false,
@@ -121,6 +133,65 @@
             });
         
         });  
+    </script>
+    <script>
+        function EditImage(image_id){
+            $.ajax({
+                url:"update.php",
+                method:"POST",
+                data: 'image_id='+image_id,
+                success:function(data){
+                    $('#current').html(data);
+                },
+                error:function(error){
+                    console.log(error);
+                }
+
+            });
+            $("#exampleModal").modal("show");
+        }
+       $('#updateform').on('submit', function(event){
+                event.preventDefault();
+                var image_name = $('#singleimage').val();
+                var author = $('#modal_author').val();
+                var image_id = $('#modal_id').val();
+                if(image_name == '')
+                {
+                    alert("Please Select Image");
+                    return false;
+                }
+                else
+                {
+                    $.ajax({
+                        url:"change.php",
+                        method:"POST",
+                        data: new FormData(this),
+                        async:true,
+                        contentType:false,
+                        cache:false,
+                        processData:false,
+                        success:function(data)
+                        {
+                            alert('Done');
+                            load_images();
+                            $("#exampleModal").modal("hide");
+                        },
+                        error:function(xhr){
+                            console.log(xhr);
+                        }
+                    });
+                }
+            });
+       function load_images()
+            {
+                $.ajax({
+                    url:"display.php",
+                    success:function(data)
+                    {
+                        $('#gallery').html(data);
+                    }
+                });
+            }
     </script>
   </body>
 </html>
