@@ -12,7 +12,9 @@ label{
     float: left !important;
     margin-top: 3.4%;
 }
-
+.rounded{
+	border-radius: 15px;
+}
 .hvr-edit:hover{
     color: rgba(0,0,0,0.6);
 }

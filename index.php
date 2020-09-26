@@ -15,13 +15,13 @@
         <div class="container text-center grad p-5 mt-5 mb-5">
         <h2 style="color: #3b0045;text-shadow: 1px 2px 10px lightgrey;">Upload Multiple Images To Directory and MYSQL Database using PHP &amp; AJAX !</h2>
         <br>
-        <h5 style="color: white;text-shadow: 1px 2px 10px grey;">All images go in the pictures folder!</h5>
-        <small class="text-danger" style="text-transform: uppercase;">make sure you have it</small>
-            <form id="Form1" enctype="multipart/form-data" method="POST" class="form-group mt-5 mb-5 p-5 shadow bg-white" style="border: 3px solid white; border-radius: 5px">
+        <h5 style="color: white;text-shadow: 1px 2px 10px grey;">All Images go in the `uploaded_images` folder!</h5>
+        <h6 class="text-danger" style="text-transform: uppercase; text-shadow: 0px 1px 2px white">make sure you have it</h6>
+            <form id="Form1" enctype="multipart/form-data" method="POST" class="form-group mt-5 mb-5 p-5 shadow bg-white rounded">
                 <label>Author</label>
                 <input type="text" id="author" name="author" class="form-control" placeholder="Who is the author?" />
                 <br>
-                <label>Choose a few images to upload!</label>
+                <label>Image(s):</label>
                 <input type="file" multiple class="form-control" name="image[]" id="image" title="Upload images!">
                 <br>
                 <br>
@@ -39,10 +39,8 @@
             <br />
             <br />
             <div class="container mt-2">
-                <div>
-                    <div class="row" id="gallery">
-                        
-                    </div>
+                <div class="row" id="gallery">
+                    
                 </div>
             </div>
             <br>
@@ -74,10 +72,6 @@
 	        	</div>
 	        </form>
 	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary">Save changes</button>
-	      </div>
 	    </div>
 	  </div>
 	</div>
@@ -86,6 +80,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="preview.js"></script>
     <script>  
         $(document).ready(function(){
             load_images();

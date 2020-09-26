@@ -6,14 +6,19 @@
     $output = '';
     while ($row = mysqli_fetch_array($result)){
         $output .= '
-        <div class="col-md-4 col-sm-12 col-lg-4 text-center">
-            <figure>
-              <img class="img-fluid" src="'.$row['image_path'].'"/>
-              <figcaption>'.$row['author'].'</figcaption>
-            </figure>
-            <div class="container mt-2 text-center">
-                <button class="btn btn-warning" id="'.$row['id'].'" onclick="EditImage(this.id)">EDIT</button> 
-            </div>
+        <div class="col-md-4 col-sm-12 col-lg-4">
+	        <div class="container bg-white p-2 m-2 shadow text-center rounded">
+	        	<figure>
+	              <img height="250px" style="width: 100%" src="'.$row['image_path'].'"/>
+	              <small class="text-muted">Author</small><br>
+	              <figcaption>'.$row['author'].'</figcaption>
+
+	            </figure>
+	            <div class="container mt-2 text-center">
+	                <button class="btn btn-info" id="'.$row['id'].'" onclick="EditImage(this.id)">UPDATE</button> 
+	            </div>
+
+	        </div>
         </div>
         ';
     }
